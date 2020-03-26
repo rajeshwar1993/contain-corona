@@ -18,6 +18,13 @@
     display: flex;
     justify-content: space-between;
     padding: 0 10px;
+    font-size: 20px;
+    &.looser{
+      background-color: red;
+    }
+    &.winner{
+      background-color: green;
+    }
   }
   .game-frame{
     background-color: wheat;
@@ -53,5 +60,10 @@
 
       }
     }
+    
+  }
+  .catch{
+    padding: 30px 0;
+    font-size: 30px;
   }
 }

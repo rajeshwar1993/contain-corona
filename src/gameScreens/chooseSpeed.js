@@ -1,6 +1,6 @@
 import React from "react";
 
-const ChooseSpeed = ({ gameSpeed, updateGameSpeed }) => {
+const ChooseSpeed = ({ gameSpeed, updateGameSpeed, updateGameState }) => {
   return (
     <div className={"game-speed-holder"}>
       <div>
@@ -11,6 +11,7 @@ const ChooseSpeed = ({ gameSpeed, updateGameSpeed }) => {
           className={"btn btn-success"}
           onClickCapture={() => {
             updateGameSpeed(1);
+            updateGameState(3);
           }}
         >
           Toddler
@@ -19,6 +20,7 @@ const ChooseSpeed = ({ gameSpeed, updateGameSpeed }) => {
           className={"btn btn-success"}
           onClickCapture={() => {
             updateGameSpeed(2);
+            updateGameState(3);
           }}
         >
           Kid
@@ -27,6 +29,7 @@ const ChooseSpeed = ({ gameSpeed, updateGameSpeed }) => {
           className={"btn btn-success"}
           onClickCapture={() => {
             updateGameSpeed(3);
+            updateGameState(3);
           }}
         >
           Puberty
@@ -35,6 +38,7 @@ const ChooseSpeed = ({ gameSpeed, updateGameSpeed }) => {
           className={"btn btn-warning"}
           onClickCapture={() => {
             updateGameSpeed(4);
+            updateGameState(3);
           }}
         >
           Lost virginity
@@ -43,6 +47,7 @@ const ChooseSpeed = ({ gameSpeed, updateGameSpeed }) => {
           className={"btn btn-warning"}
           onClickCapture={() => {
             updateGameSpeed(5);
+            updateGameState(3);
           }}
         >
           Married
@@ -51,6 +56,7 @@ const ChooseSpeed = ({ gameSpeed, updateGameSpeed }) => {
           className={"btn btn-danger"}
           onClickCapture={() => {
             updateGameSpeed(6);
+            updateGameState(3);
           }}
         >
           Too late to be saved

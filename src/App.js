@@ -14,7 +14,7 @@ export default function App() {
       <h1>Contain Corona!</h1>
       {gameState === 1 && (
         <div className={"new-game"}>
-          <h3>Start New Game</h3>
+          <h3>Start Game</h3>
           <button
             className={"btn btn-primary"}
             onClickCapture={() => {
@@ -37,9 +37,15 @@ export default function App() {
         </div>
       )}
       {gameState === 2 && (
-        <ChooseSpeed gameSpeed={gameSpeed} updateGameSpeed={updateGameSpeed} />
+        <ChooseSpeed
+          updateGameState={updateGameState}
+          gameSpeed={gameSpeed}
+          updateGameSpeed={updateGameSpeed}
+        />
       )}
-      {gameState === 3 && <GameScreen speed={1} />}
+      {gameState === 3 && (
+        <GameScreen updateGameState={updateGameState} speed={gameSpeed} />
+      )}
     </div>
   );
 }
