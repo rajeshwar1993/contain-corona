@@ -3,9 +3,10 @@ import "bootstrap/dist/css/bootstrap.css";
 import "./styles.scss";
 
 import ChooseSpeed from "./gameScreens/chooseSpeed";
+import GameScreen from "./gameScreens/gameComponent";
 
 export default function App() {
-  const [gameState, updateGameState] = useState(1);
+  const [gameState, updateGameState] = useState(3);
   const [gameSpeed, updateGameSpeed] = useState(1);
 
   return (
@@ -38,6 +39,7 @@ export default function App() {
       {gameState === 2 && (
         <ChooseSpeed gameSpeed={gameSpeed} updateGameSpeed={updateGameSpeed} />
       )}
+      {gameState === 3 && <GameScreen speed={1} />}
     </div>
   );
 }
