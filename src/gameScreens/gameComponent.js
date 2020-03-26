@@ -2,12 +2,13 @@ import React, { useState, useEffect } from "react";
 import clsx from "clsx";
 
 let interval;
+let timePass;
 
 const GameScreen = ({ speed, updateGameState }) => {
   const [currentPosition, updateCurrentPosition] = useState(0);
   const [isStarted, toggleIsStarted] = useState(false);
   const [time, updateTime] = useState(0);
-  const [tries, updateTries] = useState(0);
+  const [tries, updateTries] = useState(-1);
   const [message, updateMessage] = useState("Could not catch it!!!");
   const [hasWon, toggleHasWon] = useState(false);
 
@@ -19,15 +20,30 @@ const GameScreen = ({ speed, updateGameState }) => {
     if (interval) {
       clearInterval(interval);
     }
+
+    if (timePass) {
+      clearInterval(timePass);
+    }
+
     if (isStarted) {
       interval = setInterval(() => {
         updateCurrentPosition(Math.floor(Math.random() * 10));
       }, s);
+      let t = parseFloat(time);
+      timePass = setInterval(() => {
+        t = t + 0.1;
+        updateTime(t.toFixed(1));
+        console.log("updating time", t);
+      }, 100);
     } else {
       if (currentPosition === 4) {
         updateMessage("You WON!!!!!");
         toggleHasWon(true);
+      } else {
+        updateMessage("Keep trying");
+        toggleHasWon(false);
       }
+      updateTries(tries + 1);
     }
   }, [isStarted]);
 
@@ -46,7 +62,7 @@ const GameScreen = ({ speed, updateGameState }) => {
       </div>
       <div className={clsx("data-section", hasWon ? "winner" : "looser")}>
         <div className={"time"}>
-          <span>{"Time(s): " + time}</span>
+          <span>{"Time: " + time + " sec"}</span>
         </div>
         <div className={"message"}>
           <span>{message}</span>
@@ -66,14 +82,19 @@ const GameScreen = ({ speed, updateGameState }) => {
           );
         })}
       </div>
-      <button
-        className={"btn btn-primary btn-block catch"}
-        onClickCapture={() => {
-          toggleIsStarted(!isStarted);
-        }}
-      >
-        Catch it!
-      </button>
+      {!hasWon && (
+        <button
+          className={clsx(
+            "btn btn-block catch",
+            isStarted ? "btn-primary" : "btn-warning"
+          )}
+          onClickCapture={() => {
+            toggleIsStarted(!isStarted);
+          }}
+        >
+          {!isStarted ? "Start" : "Catch it!"}
+        </button>
+      )}
     </div>
   );
 };
